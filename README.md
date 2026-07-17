@@ -24,4 +24,13 @@ also restores the Go command-line tools listed in `packages/go-tools.txt`.
 ```bash
 ./packages/install.sh
 ```
+
+## GitHub over SSH
+
+Fish starts an SSH agent using `~/.ssh/agent/ssh-agent.sock`. After creating
+and adding your public key to GitHub, load the private key once per login:
+
+```fish
+ssh-add ~/.ssh/id_ed25519_github
+```
  
