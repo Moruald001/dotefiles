@@ -1,0 +1,5 @@
+# Local backups made by install.sh
+.dotfiles-backup/
+
+# Editor and OS metadata
+.DS_Store

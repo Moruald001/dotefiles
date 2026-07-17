@@ -1,0 +1,28 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$dart\
+$cmd_duration
+$character
+"""
+
+[directory]
+style = "bold cyan"
+
+[git_branch]
+symbol = " "
+style = "purple"
+
+[nodejs]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[character]
+success_symbol = "❯"
+error_symbol = "❯"

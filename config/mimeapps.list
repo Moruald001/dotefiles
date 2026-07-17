@@ -1,0 +1,27 @@
+[Default Applications]
+x-scheme-handler/http=userapp-Zen-XFFPS3.desktop
+x-scheme-handler/https=userapp-Zen-XFFPS3.desktop
+x-scheme-handler/chrome=userapp-Zen-XFFPS3.desktop
+text/html=userapp-Zen-XFFPS3.desktop
+application/x-extension-htm=userapp-Zen-XFFPS3.desktop
+application/x-extension-html=userapp-Zen-XFFPS3.desktop
+application/x-extension-shtml=userapp-Zen-XFFPS3.desktop
+application/xhtml+xml=userapp-Zen-XFFPS3.desktop
+application/x-extension-xhtml=userapp-Zen-XFFPS3.desktop
+application/x-extension-xht=userapp-Zen-XFFPS3.desktop
+
+[Added Associations]
+x-scheme-handler/http=userapp-Zen-XFFPS3.desktop;userapp-Zen-S43MS3.desktop;
+x-scheme-handler/https=userapp-Zen-XFFPS3.desktop;userapp-Zen-S43MS3.desktop;
+x-scheme-handler/chrome=userapp-Zen-XFFPS3.desktop;userapp-Zen-S43MS3.desktop;
+text/html=userapp-Zen-S43MS3.desktop;
+application/x-extension-htm=userapp-Zen-S43MS3.desktop;
+application/x-extension-html=userapp-Zen-S43MS3.desktop;
+application/x-extension-shtml=userapp-Zen-S43MS3.desktop;
+application/xhtml+xml=userapp-Zen-S43MS3.desktop;
+application/x-extension-xhtml=userapp-Zen-S43MS3.desktop;
+application/x-extension-xht=userapp-Zen-S43MS3.desktop;
+image/jpeg=org.kde.gwenview.desktop;org.gnome.Loupe.desktop;imv.desktop;firefox.desktop;
+application/yaml=code.desktop;
+text/css=code.desktop;
+video/mp2t=mpv.desktop;vlc.desktop;
