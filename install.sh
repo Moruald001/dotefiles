@@ -30,6 +30,7 @@ files=(
   "config/user-dirs.dirs:.config/user-dirs.dirs"
   "config/waybar/config.jsonc:.config/waybar/config.jsonc"
   "config/waybar/style.css:.config/waybar/style.css"
+  "config/waypaper/config.ini:.config/waypaper/config.ini"
 )
 
 for entry in "${files[@]}"; do

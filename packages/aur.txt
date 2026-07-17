@@ -10,4 +10,5 @@ python-hyprland-socket
 python-hyprland-state
 visual-studio-code-bin
 waybar-git
+waypaper
 xdman_gtk
