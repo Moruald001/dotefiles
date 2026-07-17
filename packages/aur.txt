@@ -1,0 +1,13 @@
+brave-bin
+fcitx5-schnelle-umlaute-git
+hyprmod
+hyprshade
+peaclock
+python-hyprland-config
+python-hyprland-monitors
+python-hyprland-schema
+python-hyprland-socket
+python-hyprland-state
+visual-studio-code-bin
+waybar-git
+xdman_gtk

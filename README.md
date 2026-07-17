@@ -14,4 +14,13 @@ The script creates symbolic links in the home directory. It first moves an
 existing file to `~/.dotfiles-backup/<date>/`, so it does not silently discard
 your configuration.
 
+## Packages
+
+The `packages/` directory records explicitly installed packages on this
+Arch/EndeavourOS machine. Repository packages and AUR packages are deliberately
+separate; `packages/install.sh` restores both (using `yay` for the AUR).
+
+```bash
+./packages/install.sh
+```
  
