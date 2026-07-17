@@ -43,6 +43,7 @@ fcitx5-configtool
 fish
 fprintd
 git
+go
 grub
 gst-plugin-va
 gvfs

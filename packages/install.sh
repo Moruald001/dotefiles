@@ -18,3 +18,9 @@ fi
 if [[ -s "$script_dir/npm-global.txt" ]]; then
   xargs -r npm install --global < "$script_dir/npm-global.txt"
 fi
+
+if [[ -s "$script_dir/go-tools.txt" ]]; then
+  while IFS= read -r tool; do
+    [[ -z "$tool" ]] || go install "$tool"
+  done < "$script_dir/go-tools.txt"
+fi

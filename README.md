@@ -18,7 +18,8 @@ your configuration.
 
 The `packages/` directory records explicitly installed packages on this
 Arch/EndeavourOS machine. Repository packages and AUR packages are deliberately
-separate; `packages/install.sh` restores both (using `yay` for the AUR).
+separate; `packages/install.sh` restores both (using `yay` for the AUR). It
+also restores the Go command-line tools listed in `packages/go-tools.txt`.
 
 ```bash
 ./packages/install.sh
