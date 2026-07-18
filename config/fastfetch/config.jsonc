@@ -13,10 +13,7 @@
     },
   },
   "display": {
-    "separator": " : ",
-    "key": {
-      "width": 0,
-    },
+    "separator": "| ", // Separator between keys and values
   },
   "modules": [
     {
@@ -24,18 +21,30 @@
       "format": "     󱇐 : Crafted my way.",
     },
     {
-      "type": "custom",
-      "format": "   ╭───────────────────────────────╮",
+      "type": "title",
+      "key": "     󰮚",
+      "format": "{1} @ {2}",
     },
+
+    {
+      "type": "custom",
+      "format": "   ╭───────────╮",
+    },
+
     {
       "type": "os",
-      "key": "     󰣇 OS      ",
+      "key": "   |  󰣇 OS    |",
+
       "keyColor": "31",
     },
+    // {
+    //   "type": "custom",
+    //   "format": "   |           |",
+    // },
     {
       "type": "host",
-      "key": "      Device  ",
-      "format": "{2}",
+      "key": "   |   Device ",
+      // "format": "{2}",
       "keyColor": "33",
     },
     {
@@ -58,20 +67,7 @@
       "key": "     󱂬 WM      ",
       "keyColor": "35",
     },
-    {
-      "type": "custom",
-      "format": "   ╰───────────────────────────────╯",
-    },
-    "break",
-    {
-      "type": "title",
-      "key": "     󰮚",
-      "format": "{1} @ {2}",
-    },
-    {
-      "type": "custom",
-      "format": "   ╭────────────────────────────────────╮",
-    },
+
     {
       "type": "cpu",
       "key": "     󰻠 CPU     ",
@@ -101,14 +97,14 @@
       "text": "birthd=$(stat -c %W /); echo $(( ( $(date +%s) - birthd ) / 86400 )) days",
       "keyColor": "34",
     },
-    {
-      "type": "uptime",
-      "key": "     󰅐 Uptime",
-      "keyColor": "35",
-    },
+    // {
+    //   "type": "uptime",
+    //   "key": "     󰅐 Uptime",
+    //   "keyColor": "35",
+    // },
     {
       "type": "custom",
-      "format": "   ╰────────────────────────────────────╯",
+      "format": "   ╰───────────╯",
     },
     "break",
     {
