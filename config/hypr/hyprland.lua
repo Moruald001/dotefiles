@@ -23,9 +23,9 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({ output = "DP-1", mode = "1920x1080", position = "0x0", scale = 1 })
-hl.monitor({ output = "eDP-1", disabled = true })
-
+--hl.monitor({ output = "DP-1", mode = "1920x1080", position = "0x0", scale = 1 })
+--hl.monitor({ output = "eDP-1", disabled = true })
+hl.monitor({output = "","preferred","auto",1})
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -54,6 +54,8 @@ hl.on("hyprland.start", function ()
    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
    hl.exec_cmd("dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE")
    hl.exec_cmd("hyprlock")
+   hl.exec_cmd("kanshi")
+   hl.exec_cmd("fcitx5 -d")
 
  end)
 
@@ -66,6 +68,11 @@ hl.on("hyprland.start", function ()
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("GTK_IM_MODULE", "fcitx")
+--hl.env("QT_IM_MODULE","fcitx")
+hl.env("XMODIFIERS","@im=fcitx")
+hl.env("SDL_IM_MODULE","fcitx")
+hl.env("INPUT_METHOD","fcitx")
 
 
 -----------------------
