@@ -48,7 +48,7 @@ local runner      = " rofi -show run"
 --
 hl.on("hyprland.start", function () 
    hl.exec_cmd("wl-paste --type text --watch cliphist store")
-   hl.exec_cmd("hyprshade on windows-vibrance")
+   hl.exec_cmd("hyprshade on windows-vibrance & hyprpm reload -n")
    hl.exec_cmd("nm-applet")
    hl.exec_cmd("waybar & awww-daemon & swaync & playerctl daemon")
    hl.exec_cmd("sleep 1 && ~/.config/hypr/scripts/wallpaper.sh")

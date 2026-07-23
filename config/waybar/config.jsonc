@@ -1,7 +1,12 @@
 {
   "layer": "top",
   "margin": "0 15px 0 15px",
-  "modules-left": ["hyprland/workspaces", "hyprland/submap", "wlr/taskbar"],
+  "modules-left": [
+    "custom/os-button",
+    "hyprland/workspaces",
+    "hyprland/submap",
+    "wlr/taskbar",
+  ],
   "modules-center": ["backlight", "clock"],
   "modules-right": [
     "group/media",
@@ -12,6 +17,8 @@
     "cpu",
     "memory",
     "hyprland/language",
+    "custom/notification",
+
     "custom/power",
   ],
   "hyprland/window": {
@@ -22,6 +29,11 @@
     "device": "intel_backlight",
     "format": "{percent}% {icon}",
     "format-icons": ["", ""],
+  },
+
+  "custom/os-button": {
+    "format": "", // Icône Arch Linux (Nerd Font). Change selon ta distro !
+    "tooltip-format": "Arch Linux (Hyprland)",
   },
 
   "wlr/taskbar": {
@@ -143,6 +155,26 @@
     "escape": true,
     "interval": 1,
     "tooltip": false,
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": "",
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -swb",
+    "on-click-right": "swaync-client -d -swb",
+    "escape": true,
   },
 
   "custom/power": {

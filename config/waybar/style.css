@@ -40,12 +40,13 @@ window#waybar {
 #memory,
 #clock,
 #volume,
-#workspaces {
+#workspaces,
+#custom-notification {
   border: solid 1px @highlight;
   border-radius: 8px;
   padding: 0 10px;
   background: @dark-9;
-  margin: 2px 8px 2px 0;
+  margin: 2px 4px 2px 4px;
 }
 
 #pulseaudio-slider {
@@ -100,6 +101,10 @@ window#waybar {
   font-size: 14px;
 }
 
+/* #custom-notification {
+  padding: 0 10px;
+} */
+
 tooltip {
   background: @dark-9;
   border-radius: 5px;
@@ -109,4 +114,13 @@ tooltip label {
 }
 #custom-power {
   margin-left: 4px;
+}
+
+#custom-os-button {
+  color: @highlight;
+  background: @dark-9;
+  padding: 0 12px;
+  border-radius: 50%;
+  /* border: solid 1px @highlight; */
+  margin: 2px 4px 2px 4px;
 }
