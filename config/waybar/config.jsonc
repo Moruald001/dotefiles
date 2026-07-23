@@ -1,40 +1,160 @@
-/*
- * @author Muhammad Haikal Hakim
- * @repository https://github.com/haikal-hakim/athena
- */
 {
   "layer": "top",
-  "height": 12,
-  "spacing": 6,
-  "include": [
-    "./modules/groups.jsonc",
-    "./modules/distro.jsonc",
-    "./modules/storage.jsonc",
-    "./modules/system.jsonc",
-    "./modules/power-profiles-daemon.jsonc",
-    "./modules/workspace.jsonc",
-    "./modules/idle-ihibitor.jsonc",
-    "./modules/audio.jsonc",
-    "./modules/connections.jsonc",
-    "./modules/battery.jsonc",
-    "./modules/clock.jsonc",
-    "./modules/tray-notif.jsonc",
-    "./modules/mpris.jsonc",
-    "./modules/power-button.jsonc",
-  ],
-  "modules-left": ["group/distro-group", "group/storage", "group/system"],
-  "modules-center": [
-    "power-profiles-daemon",
-    "hyprland/workspaces",
-    "idle_inhibitor",
-  ],
+  "margin": "0 15px 0 15px",
+  "modules-left": ["hyprland/workspaces", "hyprland/submap", "wlr/taskbar"],
+  "modules-center": ["backlight", "clock"],
   "modules-right": [
-    "mpris",
-    "group/audio",
-    "group/connections",
+    "group/media",
+    "group/volume",
     "battery",
-    "clock",
-    "group/tray-group",
+    "bluetooth",
+    "network",
+    "cpu",
+    "memory",
+    "hyprland/language",
     "custom/power",
   ],
+  "hyprland/window": {
+    "max-length": 50,
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""],
+  },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 14,
+    "icon-theme": "Numix-Circle",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": ["Alacritty"],
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition",
+    },
+    "rewrite": {
+      "Firefox Web Browser": "Firefox",
+      "Foot Server": "Terminal",
+    },
+  },
+
+  "battery": {
+    "interval": 60,
+    "format": "{capacity}% {icon}",
+    "format-icons": {
+      "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+      "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+    },
+  },
+
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "exec blueman-manager",
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "  {}%",
+    "max-length": 10,
+    "on-click": " exec kitty --title=btop -e btop",
+  },
+  "memory": {
+    "interval": 30,
+    "format": "  {}%",
+    "max-length": 10,
+    "tooltip-format": "{used:0.1f}G/{total:0.1f}G used",
+  },
+
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{essid}  ",
+    "format-ethernet": "{ifname} ",
+    "format-disconnected": "", //An empty format will hide the module.
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "on-click": "exec nmrs",
+  },
+  "clock": {
+    "locale": "fr_FR.UTF-8",
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a %d %b %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "format": {
+        "today": "<span color='#75f1fa'><b>{}</b></span>",
+      },
+    },
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "default": ["", ""],
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol",
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal",
+  },
+
+  "group/volume": {
+    "orientation": "horizontal",
+    "modules": ["pulseaudio", "pulseaudio/slider"],
+  },
+
+  "group/media": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/media-animation",
+      "custom/media-now-playing",
+      "custom/media-time",
+    ],
+  },
+  "custom/media-now-playing": {
+    "exec": "~/.config/waybar/custom_modules/media/media-now-playing.sh",
+    "escape": true,
+    "tooltip": false,
+    "on-click": "playerctl play-pause",
+  },
+  "custom/media-animation": {
+    "exec": "~/.config/waybar/custom_modules/media/media-animation.sh",
+    "escape": true,
+  },
+  "custom/media-time": {
+    "exec": "~/.config/waybar/custom_modules/media/media-time.sh",
+    "escape": true,
+    "interval": 1,
+    "tooltip": false,
+  },
+
+  "custom/power": {
+    "format": "⏻ ",
+    "tooltip": false,
+    "on-click": "wlogout",
+  },
+  "hyprland/language": {
+    "format": "{}",
+    "format-en": "US",
+    "format-es": "ES",
+    "tooltip": true,
+    "tooltip-format": "{long}",
+  },
 }

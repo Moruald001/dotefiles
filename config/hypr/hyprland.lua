@@ -25,7 +25,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 --hl.monitor({ output = "DP-1", mode = "1920x1080", position = "0x0", scale = 1 })
 --hl.monitor({ output = "eDP-1", disabled = true })
-hl.monitor({output = "","preferred","auto",1})
+--hl.monitor({output = "","preferred","auto",1})
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -33,7 +33,8 @@ hl.monitor({output = "","preferred","auto",1})
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "thunar "
-local menu        = "~/.config/rofi/launchers/type-2/launcher.sh"
+local menu        = "rofi -show drun -show-icons"
+local runner      = " rofi -show run"
 
 
 -------------------
@@ -49,13 +50,14 @@ hl.on("hyprland.start", function ()
    hl.exec_cmd("wl-paste --type text --watch cliphist store")
    hl.exec_cmd("hyprshade on windows-vibrance")
    hl.exec_cmd("nm-applet")
-   hl.exec_cmd("waybar & awww-daemon & swaync")
+   hl.exec_cmd("waybar & awww-daemon & swaync & playerctl daemon")
    hl.exec_cmd("sleep 1 && ~/.config/hypr/scripts/wallpaper.sh")
    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
    hl.exec_cmd("dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE")
    hl.exec_cmd("hyprlock")
    hl.exec_cmd("kanshi")
    hl.exec_cmd("fcitx5 -d")
+   
 
  end)
 
@@ -223,9 +225,10 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
-    },
+        force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo   = true,-- If true disables the random hyprland logo / anime girl background. :(
+    	
+	},
 })
 
 
@@ -246,7 +249,7 @@ hl.config({
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
         touchpad = {
-            natural_scroll = false,
+            natural_scroll = true,
         },
     },
 })
@@ -270,6 +273,7 @@ hl.device({
 ---------------------
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+local secondMod = "SUPER + SHIFT"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
@@ -280,11 +284,13 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({mode = "fullscreen" ,action = "toggle"  }))
-hl.bind( "ALT + SPACE", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. "+ SPACE", hl.dsp.exec_cmd(menu))
+hl.bind(secondMod .. " + SPACE ", hl.dsp.exec_cmd(runner))
+hl.bind(secondMod .. " + ESCAPE",hl.dsp.exec_cmd("/home/ro/.config/hypr/scripts/locks.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("zen"))
-hl.bind("ALT + V",hl.dsp.exec_cmd("cliphist list | rofi -dmenu -theme ~/.config/rofi/launchers/type-2/style-2.rasi | cliphist decode | wl-copy"))
+hl.bind("ALT + V",hl.dsp.exec_cmd("cliphist list | rofi -dmenu  | cliphist decode | wl-copy"))
 hl.bind(mainMod .. " + ALT + v", hl.dsp.exec_cmd("hyprlock & systemctl suspend"))
 
 -- Move focus with mainMod + arrow keys
