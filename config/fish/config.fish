@@ -2,7 +2,7 @@ if status is-interactive
 	fastfetch    # Commands to run in interactive sessions can go here
 end
 alias ls="lsd"
-
+alias homelab="ssh homelab"
 
 # pnpm
 set -gx PNPM_HOME "/home/ro/.local/share/pnpm"
