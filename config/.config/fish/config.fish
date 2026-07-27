@@ -19,7 +19,6 @@ if test -d "$HOME/go/bin"
 end
 
 # Start an SSH agent for GitHub. Add the key once per login with:
-# ssh-add ~/.ssh/id_ed25519_github
 set -l ssh_agent_socket "$HOME/.ssh/agent/ssh-agent.sock"
 if not set -q SSH_AUTH_SOCK; or not test -S "$SSH_AUTH_SOCK"
   if not test -S "$ssh_agent_socket"
@@ -28,3 +27,10 @@ if not set -q SSH_AUTH_SOCK; or not test -S "$SSH_AUTH_SOCK"
   end
   set -gx SSH_AUTH_SOCK "$ssh_agent_socket"
 end
+
+
+# ssh-add ~/.ssh/id_ed25519_github
+if test -f ~/.ssh/id_ed25519_github
+    ssh-add -q ~/.ssh/id_ed25519_github 2>/dev/null
+end
+
