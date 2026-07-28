@@ -1,26 +1,23 @@
 #!/usr/bin/env bash
 
-# Restore the packages recorded on this Arch/EndeavourOS installation.
-set -euo pipefail
+set -e
 
-script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+echo "Installing pacman packages..."
+sudo pacman -S --needed - < pacman.txt
 
-sudo pacman -S --needed - < "$script_dir/pacman.txt"
+echo "Installing AUR packages..."
+yay -S --needed - < aur.txt
 
-if [[ -s "$script_dir/aur.txt" ]]; then
-  if ! command -v yay >/dev/null; then
-    echo "yay is required to install AUR packages listed in aur.txt." >&2
-    exit 1
-  fi
-  yay -S --needed - < "$script_dir/aur.txt"
-fi
+echo "Installing npm global packages..."
+while IFS= read -r package; do
+    [[ -z "$package" ]] && continue
+    npm install -g "$package"
+done < npm-global.txt
 
-if [[ -s "$script_dir/npm-global.txt" ]]; then
-  xargs -r npm install --global < "$script_dir/npm-global.txt"
-fi
+echo "Installing Go tools..."
+while IFS= read -r tool; do
+    [[ -z "$tool" ]] && continue
+    go install "${tool}@latest"
+done < go-tools.txt
 
-if [[ -s "$script_dir/go-tools.txt" ]]; then
-  while IFS= read -r tool; do
-    [[ -z "$tool" ]] || go install "$tool"
-  done < "$script_dir/go-tools.txt"
-fi
+echo "Done!"

@@ -1,1 +1,1 @@
-github.com/antonmedv/countdown@v1.5.0
+countdown

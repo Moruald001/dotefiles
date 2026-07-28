@@ -1,2 +1,4 @@
+/home/ro/.local/share/nvm/v24.18.0/lib
 corepack
 npm
+prettier
