@@ -1,36 +1,102 @@
+
 # Dotfiles
 
-Personal desktop and terminal configuration files.
+Personal desktop and terminal configuration files managed with GNU Stow.
 
 ## Install
 
-Run this from the repository root:
+Clone the repository and run the installer from the repository root:
 
 ```bash
 ./install.sh
 ```
 
-The script creates symbolic links in the home directory. It first moves an
-existing file to `~/.dotfiles-backup/<date>/`, so it does not silently discard
-your configuration.
+The installation script:
+
+* installs packages listed in `packages/`
+* restores development tools
+* creates symbolic links using GNU Stow
+
+Existing configuration files should be moved or removed before running Stow if they conflict with managed files.
+
+## Structure
+
+```
+.dotfiles
+├── config/
+│   └── .config/
+│       ├── fish/
+│       ├── hypr/
+│       ├── nvim/
+│       ├── waybar/
+│       └── ...
+├── home/
+│   └── .gitconfig
+├── packages/
+│   ├── pacman.txt
+│   ├── aur.txt
+│   ├── npm-global.txt
+│   ├── go-tools.txt
+│   └── install.sh
+└── install.sh
+```
+
+## GNU Stow
+
+This repository uses GNU Stow to manage symbolic links.
+
+Configuration files stored in:
+
+```
+config/.config/
+```
+
+are linked into:
+
+```
+~/.config/
+```
+
+with:
+
+```bash
+stow config
+```
+
+Files stored in:
+
+```
+home/
+```
+
+are linked directly into:
+
+```
+~/
+```
+
+with:
+
+```bash
+stow home
+```
 
 ## Packages
 
-The `packages/` directory records explicitly installed packages on this
-Arch/EndeavourOS machine. Repository packages and AUR packages are deliberately
-separate; `packages/install.sh` restores both (using `yay` for the AUR). It
-also restores the Go command-line tools listed in `packages/go-tools.txt`.
+The `packages/` directory contains the packages required for this Arch/EndeavourOS setup.
+
+Packages are separated into different categories:
+
+* `pacman.txt` → official repository packages
+* `aur.txt` → AUR packages installed with `yay`
+* `npm-global.txt` → global npm packages
+* `go-tools.txt` → Go command-line tools
+
+To restore the configuration on another machine:
 
 ```bash
-./packages/install.sh
+git clone <repository>
+cd .dotfiles
+./install.sh
 ```
 
-## GitHub over SSH
-
-Fish starts an SSH agent using `~/.ssh/agent/ssh-agent.sock`. After creating
-and adding your public key to GitHub, load the private key once per login:
-
-```fish
-ssh-add ~/.ssh/id_ed25519_github
-```
- 
