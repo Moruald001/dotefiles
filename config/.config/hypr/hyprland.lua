@@ -49,7 +49,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("hyprshade on windows-vibrance & hyprpm reload -n")
     hl.exec_cmd("nm-applet")
-    hl.exec_cmd("waybar & awww-daemon & swaync & playerctl daemon")
+    hl.exec_cmd(" qs -p ~/.config/quickshell/ & awww-daemon & swaync & playerctl daemon")
     --   hl.exec_cmd("sleep 1 && ~/.config/hypr/scripts/wallpaper.sh")
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE")
@@ -146,9 +146,6 @@ hl.config({
     animations = {
         enabled = true,
     },
-
-
-
 })
 
 
@@ -192,12 +189,14 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 3, bezier = "quick" 
 --     border_size = 0,
 --     rounding    = 0,
 -- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
+hl.window_rule({
+    name         = "pip-floating",
+    match        = { class = "zen", title = "Picture-in-Picture" },
+    float        = true,
+    pin          = true,
+    stay_focused = false
+    ,
+})
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({

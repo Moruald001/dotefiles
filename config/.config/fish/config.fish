@@ -3,7 +3,7 @@ if status is-interactive
 end
 alias ls="lsd"
 alias homelab="ssh homelab"
-
+alias qsh="qs -p ~/.config/quickshell/"
 # pnpm
 set -gx PNPM_HOME "/home/ro/.local/share/pnpm"
 if not string match -q -- "$PNPM_HOME/bin" $PATH
